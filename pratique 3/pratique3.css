@@ -1,0 +1,13 @@
+#info-scroll {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: white;
+    padding: 5px;
+    border: 1px solid black;
+    font-family: Arial, sans-serif;
+}
+
+.contenu-long {
+    height: 2000px; /* Pour permettre le défilement */
+}

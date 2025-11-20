@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice2</title>
+</head>
+<body>
+    <script>
+    // 1️ Déclaration des variables
+    let motDePasse = "test123hh";
+    let resultatValidation = true;
+
+    // 2️ Vérification 1 : Longueur minimale
+    if (motDePasse.length < 8) {
+        console.log("Erreur : Le mot de passe est trop court.");
+        resultatValidation = false;
+    }
+
+    // 3️ Vérification 2 : Contient au moins un chiffre
+    if (!/[0-9]/.test(motDePasse)) {  
+        console.log("Erreur : Le mot de passe doit contenir au moins un chiffre.");
+        resultatValidation = false;
+    }
+
+    // 4️ Vérification 3 : Mot de passe interdit 
+    if (motDePasse === "password") {
+        console.log("Erreur : Ce mot de passe est interdit.");
+        resultatValidation = false;
+    }
+
+    // 5️ Résultat final
+    if (resultatValidation === true) {
+        console.log("Succès : Le mot de passe est sécurisé et validé.");
+    } else {
+        console.log("Échec : Veuillez revoir votre mot de passe pour corriger les erreurs ci-dessus.");
+    }
+</script>
+
+</body>
+</html>
