@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+        const utilisateurs = [
+    { nom: 'Bouba', age: 30 },
+    { nom: 'Ali', age: 25 },
+    { nom: 'Oury', age: 40 },
+];
+
+// Partie A : forEach
+
+//forEach est une méthode de tableau qui parcourt chaque élément du tableau.
+//u représente chaque élément (utilisateur) à chaque itération.
+
+utilisateurs.forEach(u => {
+      console.log(u.nom + " a " + u.age + " ans.");
+    
+});
+
+// Partie B : filter
+
+//filter() est une méthode des tableaux en JavaScript.
+
+//Elle parcourt chaque élément du tableau et garde uniquement ceux qui remplissent la condition.
+
+//Elle renvoie un nouveau tableau.
+
+const utilisateurs30 = utilisateurs.filter(u => u.age >= 30);
+console.log(utilisateurs30);
+
+// Partie C : sort (tri par âge croissant)
+
+//sort() est une méthode des tableaux qui trie les éléments.
+
+// Par défaut, sort() trie les éléments comme des chaînes de caractères, 
+//donc il faut souvent fournir une fonction de comparaison pour trier des nombres ou des objets.
+//a et b représentent deux éléments du tableau lors du tri. Ici, ce sont des objets utilisateurs.
+
+//a.age - b.age :
+
+//Si le résultat est négatif, a sera avant b.
+
+//Si le résultat est positif, b sera avant a.
+
+//Si le résultat est 0, ils restent dans le même ordre.
+
+
+utilisateurs.sort((a, b) => a.age - b.age);
+console.log(utilisateurs);
+
+    </script>
+    </body>
+</html>

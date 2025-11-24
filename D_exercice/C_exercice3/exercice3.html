@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let prixBrut = 11.6789;
+let tauxTVA = "19.6";
+
+// Partie A
+let prixFormaté = prixBrut.toFixed(2);
+console.log(prixFormaté); 
+// "11.68"
+
+// Partie B
+let tvaEntier = parseInt(tauxTVA);
+console.log(tvaEntier); 
+// 19
+
+// Défi
+let estEntier = Number.isInteger(tvaEntier);
+console.log(estEntier); 
+// true
+
+    </script>
+</body>
+</html>

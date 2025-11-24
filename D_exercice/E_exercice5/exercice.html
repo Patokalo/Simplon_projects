@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+        const voiture = { marque: 'Renault', couleur: 'bleu', annee: 2020 };
+
+// Partie A
+console.log(Object.keys(voiture));    
+console.log(Object.values(voiture));  
+console.log(Object.entries(voiture)); 
+
+// Partie B (copie)
+const voitureRouge = { ...voiture };
+voitureRouge.couleur = 'rouge';
+
+console.log(voitureRouge);
+console.log(voiture);
+
+    </script>
+    </body>
+</html>

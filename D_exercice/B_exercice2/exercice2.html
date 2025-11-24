@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+        let phrase = " le dOm est un pont vers le web interactif. ";
+
+let propre = phrase.trim();
+propre = propre.toLowerCase();
+propre = propre.charAt(0).toUpperCase() + propre.slice(1);
+propre = propre.replace("dom", "DOM");
+
+console.log(propre); 
+// "Le DOM est un pont vers le web interactif."
+
+let contientPont = propre.includes("pont");
+console.log(contientPont); 
+// true
+
+// Extraction avec substring
+let debut = propre.indexOf("interactif");
+let extrait = propre.substring(debut, debut +
+ "interactif".length);
+console.log(extrait); 
+// "interactif"
+
+    </script>
+    </body>
+</html>

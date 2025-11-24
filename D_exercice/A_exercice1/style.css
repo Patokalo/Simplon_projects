@@ -1,0 +1,12 @@
+/* Déclaration de la variable CSS */
+:root {
+    --couleur-primaire: blue;
+}
+
+/* Utilisation de la variable */
+#paragraphe-style {
+    background-color: var(--couleur-primaire);
+    padding: 20px;
+    color: white;
+    font-size: 18px;
+}
