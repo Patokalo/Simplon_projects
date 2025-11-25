@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 2</title>
+</head>
+<body>
+    <script>
+        // 1. Création de la classe Livre
+class Livre {
+
+    // 2. Constructeur avec titre et auteur
+    constructor(titre, auteur) {
+        this.titre = titre;
+        this.auteur = auteur;
+    }
+
+    // 3. Méthode d'affichage
+    afficherDescription() {
+        return `Le livre "${this.titre}" a
+         été écrit par ${this.auteur}.`;
+    }
+}
+
+// 4a. Création d’une première instance
+let livre1 = new Livre("Le Petit Prince", 
+"Antoine de Saint-Exupéry");
+
+// 4b. Deuxième instance
+let livre2 = new Livre("Rich Dad Poor Dad", 
+"Robert Kiyosaki");
+
+// 5. Test des méthodes
+console.log(livre1.afficherDescription());
+console.log(livre2.afficherDescription());
+
+    </script>
+</body>
+</html>

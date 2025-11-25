@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 4</title>
+</head>
+<body>
+    <script>
+        // Exercice 4 : Encapsulation avec propriétés privées
+
+class CompteBancaire {
+    // Propriété privée
+    #solde;
+
+    constructor() {
+        this.#solde = 0; // solde initial
+    }
+
+    // Méthode publique : déposer de l'argent
+    deposer(montant) {
+        if (montant > 0) {
+            this.#solde += montant;
+            console.log(montant + " F déposés avec succès.");
+        } else {
+            console.log("Le montant doit être positif.");
+        }
+    }
+
+    // Méthode publique : obtenir le solde
+    getSolde() {
+        return this.#solde;
+    }
+}
+
+// --- TESTS ---
+
+const monCompte = new CompteBancaire();
+
+monCompte.deposer(150);           // Dépôt
+console.log(monCompte.getSolde()); // Affiche 150
+
+// ⚠️ Ceci provoque une erreur et prouve l'encapsulation :
+// console.log(monCompte.#solde); 
+
+    </script>
+</body>
+</html>

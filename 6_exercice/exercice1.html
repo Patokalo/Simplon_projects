@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 1</title>
+</head>
+<body>
+    <script>
+        // 1. Création de l'objet produit
+let produit = {
+    nom: "Clavier mécanique",
+    prix: 85.50,
+    disponible: true,
+
+    // 2. Méthode : calcul du prix TTC
+    calculerPrixTTC: function () {
+        let TVA = 0.20;
+        return this.prix * (1 + TVA);
+    }
+};
+
+// 3a. Afficher toutes les clés
+console.log("Clés :", Object.keys(produit));
+
+// 3b. Afficher toutes les valeurs
+console.log("Valeurs :", Object.values(produit));
+
+// 4. Test de la méthode calculerPrixTTC()
+console.log("Prix TTC :", produit.calculerPrixTTC());
+
+    </script>
+</body>
+</html>

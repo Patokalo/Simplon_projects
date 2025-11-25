@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 3</title>
+</head>
+<body>
+    <script>
+        // 1️ Classe Parent : Livre
+class Livre {
+    constructor(titre, auteur) {
+        this.titre = titre;
+        this.auteur = auteur;
+    }
+
+    afficherDescription() {
+        return `Le livre "${this.titre}" 
+        a été écrit par ${this.auteur}.`;
+    }
+}
+
+// 2 Classe Enfant : RomanPolicier qui hérite de Livre
+class RomanPolicier extends Livre {
+    constructor(titre, auteur, personnagePrincipal) {
+        super(titre, auteur); // Appel au constructeur parent
+        this.personnagePrincipal = personnagePrincipal;
+    }
+
+    // 3 Méthode spécifique à la classe enfant
+    afficherGenre() {
+        return `Ceci est un roman policier dont 
+        le héros est ${this.personnagePrincipal}.`;
+    }
+}
+
+// 4 Création d'une instance
+let monRoman = new RomanPolicier(
+    "Le Chien des Baskerville",
+    "Arthur Conan Doyle",
+    "Sherlock Holmes"
+);
+
+// 5️ Test : Appels des méthodes
+console.log(monRoman.afficherDescription());
+console.log(monRoman.afficherGenre());
+
+    </script>
+</body>
+</html>
