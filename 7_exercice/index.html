@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Générateur de Fiches de Personnage</title>
+  <style>
+    /* Conteneur principal */
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #f2f2f2;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    /* Formulaire */
+    #form-personnage {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    #form-personnage input, #form-personnage select, #form-personnage button {
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    #form-personnage button {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.3s;
+    }
+
+    #form-personnage button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Conteneur des cartes */
+    #conteneur-personnages {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    /* Carte personnage */
+    .carte-personnage {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      width: 200px;
+      background-color: white;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* Carte santé faible */
+    .faible-sante {
+      border-color: red;
+      background-color: #ffe6e6;
+    }
+
+    .carte-personnage button {
+      padding: 5px;
+      font-size: 14px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .attaquer {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .soigner {
+      background-color: #28a745;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form id="form-personnage">
+      <input type="text" id="nom" placeholder="Nom du personnage" required>
+      <select id="classe">
+        <option value="Guerrier">Guerrier</option>
+        <option value="Mage">Mage</option>
+        <option value="Archer">Archer</option>
+      </select>
+      <input type="number" id="sante" min="0" max="100" value="100">
+      <input type="number" id="attaque" min="1" max="50" value="10">
+      <button type="submit">Créer Personnage</button>
+    </form>
+
+    <div id="conteneur-personnages"></div>
+  </div>
+
+  <script>
+    // 🔹 Tableau global pour stocker les personnages
+    const personnages = [];
+
+    // 🔹 Classe POO Personnage
+    class Personnage {
+      constructor(nom, classe, sante, attaque) {
+        this.nom = nom;
+        this.classe = classe;
+        this.sante = sante;
+        this.attaque = attaque;
+      }
+
+      attaquer(cible) {
+        cible.subirDegats(this.attaque);
+      }
+
+      subirDegats(points) {
+        this.sante -= points;
+        if (this.sante < 0) this.sante = 0;
+      }
+
+      soigner(points) {
+        this.sante += points;
+        if (this.sante > 100) this.sante = 100;
+      }
+
+      afficherInfos() {
+        return {
+          nom: this.nom,
+          classe: this.classe,
+          sante: this.sante,
+          attaque: this.attaque
+        };
+      }
+    }
+
+    // 🔹 Sélection du formulaire et du conteneur
+    const form = document.getElementById('form-personnage');
+    const conteneur = document.getElementById('conteneur-personnages');
+
+    // 🔹 Fonction pour générer la carte HTML
+    function genererCarte(personnage) {
+      const carte = document.createElement('div');
+      carte.classList.add('carte-personnage');
+
+      const h3 = document.createElement('h3');
+      h3.textContent = `${personnage.nom} (${personnage.classe})`;
+
+      const pSante = document.createElement('p');
+      pSante.textContent = `Santé : ${personnage.sante}`;
+
+      const pAttaque = document.createElement('p');
+      pAttaque.textContent = `Attaque : ${personnage.attaque}`;
+
+      const btnAttaquer = document.createElement('button');
+      btnAttaquer.textContent = 'Attaquer';
+      btnAttaquer.classList.add('attaquer');
+
+      const btnSoigner = document.createElement('button');
+      btnSoigner.textContent = 'Soigner';
+      btnSoigner.classList.add('soigner');
+
+      // 🔹 Ajout des éléments à la carte
+      carte.append(h3, pSante, pAttaque, btnAttaquer, btnSoigner);
+      conteneur.appendChild(carte);
+
+      // 🔹 Mise à jour de la carte selon la santé
+      function majCarte() {
+        pSante.textContent = `Santé : ${personnage.sante}`;
+        if (personnage.sante < 20) {
+          carte.classList.add('faible-sante');
+        } else {
+          carte.classList.remove('faible-sante');
+        }
+      }
+
+      // 🔹 Événements boutons
+      btnAttaquer.addEventListener('click', () => {
+        personnage.subirDegats(10); // attaque fixe pour l'exemple
+        majCarte();
+      });
+
+      btnSoigner.addEventListener('click', () => {
+        personnage.soigner(10); // soin fixe pour l'exemple
+        majCarte();
+      });
+
+      majCarte();
+    }
+
+    // 🔹 Gestion du formulaire
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nom = document.getElementById('nom').value;
+      const classe = document.getElementById('classe').value;
+      const sante = parseInt(document.getElementById('sante').value);
+      const attaque = parseInt(document.getElementById('attaque').value);
+
+      const perso = new Personnage(nom, classe, sante, attaque);
+      personnages.push(perso);
+
+      genererCarte(perso);
+
+      form.reset();
+    });
+  </script>
+</body>
+</html>
