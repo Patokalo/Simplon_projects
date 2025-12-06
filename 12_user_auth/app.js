@@ -1,17 +1,15 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 
-const authRoutes = require("./routes/auth");
+const connectDB = require("./config/db");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
-app.use(bodyParser.json()); // pour parser les requêtes JSON
+app.use(bodyParser.json());
 
 // --- Connexion à MongoDB ---
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ Connecté à MongoDB"))
-  .catch(err => console.error("❌ Erreur MongoDB :", err.message));
+connectDB();
 
 // --- Routes ---
 app.use("/api/auth", authRoutes);
